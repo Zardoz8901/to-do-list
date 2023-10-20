@@ -1,5 +1,9 @@
 import currentDate from './current-date';
-import timer from './timer';
+import currentTime from './current-time';
+import countDown from './timer';
+import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 
-timer();
+countDown(new Date(2023, 9, 20));
+console.log(formatDistanceToNow(new Date(2023, 9, 20)));
+
 console.log(currentDate());

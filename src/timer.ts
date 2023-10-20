@@ -1,7 +1,9 @@
+import { formatDistance } from 'date-fns';
 import currentTime from './current-time';
 import formatSecond from './format-second';
 
-export default function timer() {
+export default function countDown(endTime: any) {
+    const timeBetween = formatDistance(endTime, currentTime());
     const interval = 1000; //1000ms
     let expectedTime = currentTime() + interval;
     setTimeout(step, interval);
@@ -12,6 +14,6 @@ export default function timer() {
         }
         expectedTime += interval;
         setTimeout(step, Math.max(0, interval - drift));
-        console.log(formatSecond(currentTime()));
+        console.log(timeBetween);
     }
 }
