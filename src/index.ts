@@ -1,5 +1,5 @@
-function printWorld() {
-    console.log('hello world!');
-}
+import currentDate from './current-date';
+import timer from './timer';
 
-printWorld();
+timer();
+console.log(currentDate());

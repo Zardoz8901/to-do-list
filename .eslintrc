@@ -13,6 +13,7 @@
         "airbnb-typescript/base",
         "prettier"
     ],
+    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
     "rules": {
         "no-console": "off",
         "no-restricted-syntax": [

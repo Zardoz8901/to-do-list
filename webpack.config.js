@@ -39,7 +39,7 @@ module.exports = {
         new WriteFilesPlugin(),
         new HtmlWebpackHarddiskPlugin(),
         new HtmlWebpackPlugin({
-            title: 'Restaurant Page',
+            title: 'To-Do',
             alwaysWriteToDisk: true,
         }),
     ],
