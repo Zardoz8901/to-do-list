@@ -38,6 +38,7 @@
         "write-file-webpack-plugin": "^4.5.1"
     },
     "dependencies": {
+        "flatpickr": "^4.6.13",
         "html-webpack-harddisk-plugin": "^2.0.0"
     }
 }
