@@ -8,35 +8,19 @@ import print from './print';
 import createDiv from './create-div';
 import flatpickr from './flatpickr';
 
-const calendar = flatpickr;
-const body = document.body;
-const firstDiv = createDiv();
-const secondDiv = createDiv();
-
-function addClass() {
-    const calClass = firstDiv.classList.add('flatpickr');
-    return calClass;
-}
-
-addClass();
-
 function queryCal() {
-    const myCalendar = document.querySelector('.flatpickr');
-    console.log(myCalendar);
+    const calendar = flatpickr(secondDiv);
+    const calendar2 = flatpickr(firstDiv);
     calendar;
-    console.log(flatpickr());
+    calendar2;
 }
 
-body.appendChild(firstDiv);
-body.appendChild(secondDiv);
+const firstDiv = document.querySelector('#first-div');
+
+const secondDiv = document.querySelector('#second-div');
+
 queryCal();
 
 // const dueDate = countDown;
 
 //countDown(/*new Date(2023, 9, 23, 11, 22)*/);
-
-let formatToSecond = formatSecond(currentTime());
-
-const countdownTimeStringTwo = countDown(new Date(2023, 9, 25, 16, 25), secondDiv);
-
-countdownTimeStringTwo;

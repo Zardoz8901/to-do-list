@@ -3,19 +3,22 @@ import currentTime from './current-time';
 import formatSecond from './format-second';
 import print from './print';
 
-export default function countDown(dueDate: any, div: HTMLElement) {
+export default function countDown(dueDate: any, div: Element) {
     const interval = 1000; //1000ms
     let expectedTime = currentTime() + interval;
     function step() {
         const drift = currentTime() - expectedTime;
-        const timeBetween = formatDistance(dueDate, currentTime());
+        let timeBetween = formatDistance(dueDate, currentTime());
         if (drift > interval) {
             console.log('drift error');
         }
         expectedTime += interval;
         setTimeout(step, Math.max(0, interval - drift));
-        div.textContent = `in ${timeBetween}`;
+        console.log(formatSecond(currentTime()));
+        console.log(timeBetween);
+        div.textContent = timeBetween;
     }
+
     setTimeout(step, interval);
     return step();
 }

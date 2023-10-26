@@ -41,6 +41,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             title: 'To-Do',
             alwaysWriteToDisk: true,
+            template: './src/index.html',
         }),
     ],
     resolve: {
