@@ -8,18 +8,22 @@ import print from './print';
 import createDiv from './create-div';
 import flatpickr from './flatpickr';
 
-function queryCal() {
-    const calendar = flatpickr(secondDiv);
-    const calendar2 = flatpickr(firstDiv);
-    calendar;
-    calendar2;
-}
+const calendarNodeArray = document.querySelectorAll('.date-picker');
+const divNodeArray = document.querySelectorAll('.date-text');
 
-const firstDiv = document.querySelector('#first-div');
+divNodeArray.forEach((div) => {
+    div.addEventListener('click', () => {
+        console.log(div);
+        const calendar = flatpickr(div);
+        return calendar;
+    });
+});
 
-const secondDiv = document.querySelector('#second-div');
+// const div1 = document.querySelector('#dt1');
 
-queryCal();
+// const calendar = flatpickr(div1);
+
+// calendar;
 
 // const dueDate = countDown;
 

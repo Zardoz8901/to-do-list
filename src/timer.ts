@@ -1,7 +1,4 @@
-import { formatDistance, intervalToDuration } from 'date-fns';
 import currentTime from './current-time';
-import formatSecond from './format-second';
-import print from './print';
 
 // export default function countDown(dueDate: any, div: Element) {
 //     const interval = 1000; //1000ms
@@ -22,41 +19,62 @@ import print from './print';
 //     return step();
 // }
 
-export function AdjustingIntervalTimer(workFunc: Function, interval: number, errorFunc: Function) {
-    let that = this;
-    let expected: any, timeout: any;
-    this.interval = interval;
+// export function AdjustingIntervalTimer(workFunc: Function, interval: number, errorFunc: Function) {
+//     let that = this;
+//     let expected: any, timeout: any;
+//     this.interval = interval;
 
-    this.start = function () {
-        expected = currentTime() + this.interval;
-        timeout = setTimeout(step, this.interval);
-    };
+//     this.start = function () {
+//         expected = currentTime() + this.interval;
+//         timeout = setTimeout(step, this.interval);
+//     };
 
-    this.stop = function () {
-        clearTimeout(timeout);
-    };
+//     this.stop = function () {
+//         clearTimeout(timeout);
+//     };
 
-    function step() {
-        let drift = currentTime() - expected;
-        if (drift > that.interval) {
-            // You could have some default stuff here too...
-            if (errorFunc) errorFunc();
-        }
-        workFunc();
-        expected += that.interval;
-        timeout = setTimeout(step, Math.max(0, that.interval - drift));
-    }
-}
+//     function step() {
+//         let drift = currentTime() - expected;
+//         if (drift > that.interval) {
+//             // You could have some default stuff here too...
+//             if (errorFunc) errorFunc();
+//         }
+//         workFunc();
+//         expected += that.interval;
+//         timeout = setTimeout(step, Math.max(0, that.interval - drift));
+//     }
+// }
 
-export class AdjustingIntervalTimerClass {
-    workFunc: Function;
+export default class AdjustingIntervalTimerClass {
+    workFunction: Function;
     interval: number;
-    errorFunc: Function;
-    constructor(workFunc: Function, interval: number, errorFunc: Function) {
-        this.workFunc = workFunc;
+    errorFunction: Function;
+    expected: number | undefined;
+    timeout: NodeJS.Timeout | undefined;
+    constructor(workFunction: Function, interval: number, errorFunction: Function) {
+        this.workFunction = workFunction;
         this.interval = interval;
-        this.errorFunc = this.errorFunc;
+        this.errorFunction = errorFunction;
+        this.expected = undefined;
+        this.timeout = undefined;
     }
+    start(): void {
+        this.expected = currentTime() + this.interval;
+        this.timeout = setTimeout(this.step, this.interval);
+    }
+    stop(): void {
+        clearTimeout(this.timeout);
+    }
+    private step = () => {
+        const drift = currentTime() - this.expected;
+        if (drift > this.interval) {
+            this.errorFunction();
+        }
+        this.workFunction();
+        console.log(2);
+        this.expected += this.interval;
+        this.timeout = setTimeout(this.step.bind(this), Math.max(0, this.interval - drift));
+    };
 }
 
 //break down function into further modules

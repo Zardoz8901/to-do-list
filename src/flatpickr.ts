@@ -1,7 +1,6 @@
 import flatpickr from 'flatpickr';
 import currentTime from './current-time';
-import getTime from 'date-fns/getTime';
-import countDown from './timer';
+import startTimer from './duedate-timer';
 
 export default function flatpickrFormat(div: Element) {
     const config = {
@@ -13,9 +12,14 @@ export default function flatpickrFormat(div: Element) {
     };
     const fp = flatpickr('.date-picker', {
         ...config,
+        onOpen: function () {
+            console.log(1);
+            console.log(div);
+        },
         onChange: function (date) {
             let selection = date[0];
-            countDown(selection, div);
+            console.log(1);
+            startTimer(selection, div);
         },
         mode: 'single',
         minDate: 'today',
