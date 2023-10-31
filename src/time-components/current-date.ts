@@ -1,4 +1,4 @@
-import currentTime from './current-time';
+import currentTime from './current-time-ms';
 import formatDate from './format-date';
 
 export default function currentDate() {

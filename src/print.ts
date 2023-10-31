@@ -1,4 +1,3 @@
-export default function print(toPrint: any) {
-    const print = console.log(toPrint);
-    return print;
+export default function print(element: Element, stringToPrint: string) {
+    element.textContent = stringToPrint;
 }

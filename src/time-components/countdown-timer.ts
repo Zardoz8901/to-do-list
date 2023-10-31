@@ -1,11 +1,13 @@
 import AdjustingIntervalTimer from './timer';
 import formatDistance from 'date-fns/formatDistance';
-import currentTime from './current-time';
+import currentTime from './current-time-ms';
+import formatSecond from './format-second';
+import print from '../print';
 
 function printTime(dueDate: Date, div: Element) {
     const timeBetween = formatDistance(dueDate, currentTime());
     console.log(timeBetween);
-    div.textContent = `in ${timeBetween}`;
+    print(div, `in ${timeBetween}`);
 }
 
 export default class TimerCountdown {
@@ -15,6 +17,7 @@ export default class TimerCountdown {
         this.timer = new AdjustingIntervalTimer(
             () => {
                 printTime(dueDate, div);
+                console.log(formatSecond(currentTime()));
             },
             1000,
             () => {
@@ -26,7 +29,6 @@ export default class TimerCountdown {
         this.timer.start();
     }
     public stopTimerCountdown() {
-        console.log('logging third level');
         this.timer.stop();
     }
 }

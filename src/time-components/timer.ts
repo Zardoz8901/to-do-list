@@ -1,4 +1,4 @@
-import currentTime from './current-time';
+import currentTime from './current-time-ms';
 
 export default class AdjustingIntervalTimerClass {
     workFunction: Function;
@@ -18,7 +18,6 @@ export default class AdjustingIntervalTimerClass {
         this.timeout = setTimeout(this.step, this.interval);
     }
     public stop() {
-        console.log('Clearing timer in AdjustingIntervalTimer.');
         clearTimeout(this.timeout);
     }
     private step = () => {

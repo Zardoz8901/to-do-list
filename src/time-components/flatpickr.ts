@@ -1,9 +1,11 @@
 import flatpickr from 'flatpickr';
-import currentTime from './current-time';
+import currentTime from './current-time-ms';
 import { CountdownManager } from './countdown-manager';
+import formatSecond from './format-second';
+import { format, setDate } from 'date-fns';
 
 export const datePicker = (div: Element, currentCountdown: CountdownManager) => {
-    const config = {
+    let config = {
         enableTime: true,
         time_24hr: true,
         dateFormat: 'Y-m-d H:i',
@@ -14,12 +16,13 @@ export const datePicker = (div: Element, currentCountdown: CountdownManager) => 
         ...config,
         onOpen: function () {
             if (currentCountdown) {
-                console.log('DatePicker opened. Attempting to stop countdown.');
                 currentCountdown.stop();
             }
         },
         onClose: function (date) {
+            console.log(date);
             let selection = date[0];
+            console.log(selection);
             currentCountdown.setCountdown(selection, div);
             currentCountdown.start();
         },

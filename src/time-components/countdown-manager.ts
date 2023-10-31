@@ -1,10 +1,10 @@
 import TimerCountdown from './countdown-timer';
 
+// manager class for timers
 export class CountdownManager {
+    // allow for null on instantiation, instantiate
     private countdown: TimerCountdown | null = null;
-    constructor() {
-        this.stop = this.stop.bind(this);
-    }
+
     setCountdown(dueDate: Date, div: Element) {
         if (this.countdown) {
             this.countdown.stopTimerCountdown();
@@ -19,7 +19,6 @@ export class CountdownManager {
     }
 
     stop() {
-        console.log('logging second level');
         if (this.countdown) {
             this.countdown.stopTimerCountdown();
         }
