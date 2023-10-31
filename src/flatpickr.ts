@@ -1,8 +1,8 @@
 import flatpickr from 'flatpickr';
 import currentTime from './current-time';
-import startTimer from './duedate-timer';
+import { CountdownManager } from './countdown-manager';
 
-export default function flatpickrFormat(div: Element) {
+export const datePicker = (div: Element, currentCountdown: CountdownManager) => {
     const config = {
         enableTime: true,
         time_24hr: true,
@@ -13,16 +13,18 @@ export default function flatpickrFormat(div: Element) {
     const fp = flatpickr('.date-picker', {
         ...config,
         onOpen: function () {
-            console.log(1);
-            console.log(div);
+            if (currentCountdown) {
+                console.log('DatePicker opened. Attempting to stop countdown.');
+                currentCountdown.stop();
+            }
         },
-        onChange: function (date) {
+        onClose: function (date) {
             let selection = date[0];
-            console.log(1);
-            startTimer(selection, div);
+            currentCountdown.setCountdown(selection, div);
+            currentCountdown.start();
         },
         mode: 'single',
         minDate: 'today',
     });
     return fp;
-}
+};
