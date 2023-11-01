@@ -6,10 +6,33 @@
         <title>Document</title>
     </head>
     <body>
-        <div id="dp1" class="date-picker">
-            <div id="dt1" class="date-text"><input type="" /></div>
+        <div class="calendar-table">
+            <div class="calendar-element" id="calendar-element-1">
+                <div class="title">
+                    <label class="visually-hidden" for="calendar-text-1">Title</label
+                    ><input type="text" name="" id="calendar-title-1" />
+                </div>
+                <div class="description">
+                    <label class="visually-hidden" for="calendar-description-1">Description</label
+                    ><input type="text" name="" id="calendar-description-1" />
+                </div>
+                <div id="dp1" class="date-picker">
+                    <div id="dt1" class="date-text">
+                        <input type="text" placeholder="add time" />
+                    </div>
+                </div>
+                <div class="priority-slider" id="priority-container-1">
+                    <div class="priority-boxes">
+                        <div class="box" data-priority="1"></div>
+                        <div class="box" data-priority="2"></div>
+                        <div class="box" data-priority="3"></div>
+                        <div class="box" data-priority="4"></div>
+                        <div class="box" data-priority="5"></div>
+                        <input type="range" id="priority-slider-1" min="0" max="5" value="0" />
+                    </div>
+                </div>
+                <div class="timestamp"></div>
+            </div>
         </div>
-        <div id="dp2" class="date-picker">
-            <div id="dt2" class="date-text"><input type="" /></div>
-        </div>
+    </body>
 </html>

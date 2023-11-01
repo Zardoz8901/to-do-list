@@ -43,6 +43,13 @@ h6 {
 }
 
 /* end reset */
+root {
+    --text-color: rgb(27, 27, 27);
+}
+
+body {
+    color: var(--text-color);
+}
 
 @import '~flatpickr/dist/flatpickr';
 
@@ -52,5 +59,96 @@ h6 {
     background-color: blue;
 }
 
-div {
+.visually-hidden {
+    border-width: 0 !important;
+    clip: rect(1px, 1px, 1px, 1px) !important;
+    height: 1px !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    position: absolute !important;
+    white-space: nowrap !important;
+    width: 1px !important;
+}
+
+.calendar-element {
+    display: flex;
+    width: 100%;
+}
+
+.date-picker {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.description > input {
+    width: 70ch;
+}
+
+.flatpickr-input.active {
+    box-sizing: border-box;
+    border-bottom: none;
+}
+
+.description > input,
+.title > input,
+.flatpickr-input,
+.flatpickr-input:active,
+.date-text > input {
+    background-color: transparent;
+    color: var(--text-color);
+    outline: none;
+    outline-style: none;
+    outline-offset: 0;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: solid rgb(28, 28, 28) 1px;
+    padding: 2px 10px;
+    margin: 0px 4px;
+}
+
+priority-slider {
+    position: relative;
+    width: 170px;
+}
+
+.priority-boxes {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    padding: 2px 0;
+    width: 120px;
+}
+
+.box {
+    position: relative;
+    top: 6px;
+    width: 14px;
+    height: 14px;
+    border: 2px solid #372ea5;
+    margin-right: 5px;
+    border-radius: 2px;
+    cursor: pointer; /* corrected this */
+    transition: background 0.3s ease;
+    z-index: 2;
+}
+
+.box:not(:last-child) {
+    margin-right: 5px; /* apply margin to all boxes except the last one */
+}
+
+/* Styling the slider */
+#priority-slider-1 {
+    position: absolute;
+    height: 4px;
+    z-index: 1;
+    cursor: pointer;
+    appearance: none;
+    background-color: transparent;
+    border: none;
+    opacity: 0;
+    pointer-events: none;
+    border-radius: 2px;
+    outline: none;
 }

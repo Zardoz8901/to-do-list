@@ -1,6 +1,8 @@
+require('flatpickr/dist/themes/airbnb.css');
 import flatpickr from 'flatpickr';
 import currentTime from './current-time-ms';
 import { CountdownManager } from './countdown-manager';
+import print from '../print';
 import formatSecond from './format-second';
 import { format, setDate } from 'date-fns';
 
@@ -22,7 +24,9 @@ export const datePicker = (div: Element, currentCountdown: CountdownManager) => 
         onClose: function (date) {
             console.log(date);
             let selection = date[0];
-            console.log(selection);
+            // console.log(selection);
+            // console.log(format)
+            print(div, 'pending');
             currentCountdown.setCountdown(selection, div);
             currentCountdown.start();
         },
