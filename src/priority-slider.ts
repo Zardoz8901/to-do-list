@@ -61,23 +61,20 @@ export default function prioritySlider() {
 
     const slider = document.getElementById('priority-slider-1') as HTMLInputElement;
     const boxes = container.querySelectorAll<HTMLDivElement>('.box');
-    document.addEventListener('mouseup', () => (isMouseDown = false));
+    let isMouseDown = false;
 
-    let isMouseDown = false; // Track if the mouse button is pressed
+    // Event Listeners for Mouse Down and Up
     container.addEventListener('mousedown', () => {
         isMouseDown = true;
     });
-
     document.addEventListener('mouseup', () => {
         isMouseDown = false;
     });
 
+    // Mouse Move event for sliding effect
     container.addEventListener('mousemove', function (event) {
         if (isMouseDown) {
-            const boxWidth = boxes[0].offsetWidth;
             const boxLeft = boxes[0].getBoundingClientRect().left;
-
-            // If mouse position is less than or equal to the left boundary of the first box, set value to '0'
             if (event.clientX <= boxLeft) {
                 slider.value = '0';
             } else {
@@ -91,11 +88,7 @@ export default function prioritySlider() {
         }
     });
 
-    container.addEventListener('mousedown', () => (isMouseDown = true));
-    container.addEventListener('mouseup', () => (isMouseDown = false));
-
     boxes.forEach((box, index) => {
-        // Function to handle box selection
         const handleBoxSelection = function () {
             if (parseInt(slider.value) === index + 1) {
                 slider.value = '0';
@@ -105,27 +98,22 @@ export default function prioritySlider() {
             updateColors();
         };
 
-        // Mouseover event for the sliding effect
         box.addEventListener('mouseover', function () {
-            if (!isMouseDown) return; // Proceed only if the mouse button is pressed
+            if (!isMouseDown) return;
             handleBoxSelection();
         });
 
-        // Click event for individual box selection
         box.addEventListener('click', handleBoxSelection);
     });
 
-    // Determines the color of a box based on the priority value
     function getColorForPriority(value: number): string {
         const weight = value / 5;
         const wr = weight * 55 + (1 - weight) * 255;
         const wg = weight * 46 + (1 - weight) * 255;
         const wb = weight * 165 + (1 - weight) * 255;
-
         return `rgb(${Math.round(wr)}, ${Math.round(wg)}, ${Math.round(wb)})`;
     }
 
-    // Updates the color of the boxes based on the current slider value
     function updateColors() {
         const sliderValue = parseInt(slider.value, 10);
         boxes.forEach((box, index) => {
