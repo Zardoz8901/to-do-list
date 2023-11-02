@@ -44,14 +44,42 @@ h6 {
 
 /* end reset */
 /* Use a system font for a 'brutalist' look */
+html {
+    width: 100vw;
+    height: 100vh;
+}
+
 body {
+    width: 100%;
+    height: 100%;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     line-height: 1.4;
     background-color: #fff; /* Assuming a white background */
     color: #000; /* Black color text for high contrast */
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    grid-template-areas:
+        'nav tab tab tab tab'
+        'nav cal cal cal cal'
+        'nav cal cal cal cal'
+        'nav cal cal cal cal'
+        'nav cal cal cal cal'
+        'nav cal cal cal cal';
 }
 
-.header-container > div {
+#navbar {
+    grid-area: nav;
+}
+#tabholder {
+    grid-area: tab;
+}
+
+.calendar-table {
+    grid-area: cal;
+}
+
+.calendar-table .header-container > div {
     margin: 0 8px;
     font-weight: bold;
 }

@@ -1,6 +1,6 @@
 import { format } from 'date-fns';
 
 export default function formatDate(date: number) {
-    const formatBigEndian = format(date, 'yyyy-MM-dd');
-    return formatBigEndian;
+    const humanReadable = format(date, 'PPp');
+    return humanReadable;
 }

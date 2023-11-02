@@ -1,8 +1,8 @@
 import './style.css';
 import { CountdownManager } from './time-components/countdown-manager';
 import { datePicker } from './time-components/flatpickr';
-import prioritySlider from './priority-slider';
-import print from './print';
+import prioritySlider from './dom-components/priority-slider';
+import print from './dom-components/print';
 import currentDate from './time-components/current-date';
 
 const divNodeArray = document.querySelectorAll('.flatpickr');

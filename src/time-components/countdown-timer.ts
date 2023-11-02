@@ -2,7 +2,7 @@ import AdjustingIntervalTimer from './timer';
 import formatDistance from 'date-fns/formatDistance';
 import currentTime from './current-time-ms';
 import formatSecond from './format-second';
-import print from '../print';
+import print from '../dom-components/print';
 
 function printTime(dueDate: Date, div: Element | Node) {
     const timeBetween = formatDistance(dueDate, currentTime());

@@ -2,7 +2,7 @@ require('flatpickr/dist/themes/airbnb.css');
 import flatpickr from 'flatpickr';
 import currentTime from './current-time-ms';
 import { CountdownManager } from './countdown-manager';
-import print from '../print';
+import print from '../dom-components/print';
 import formatSecond from './format-second';
 import { format, setDate } from 'date-fns';
 
