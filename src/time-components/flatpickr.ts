@@ -6,7 +6,7 @@ import print from '../print';
 import formatSecond from './format-second';
 import { format, setDate } from 'date-fns';
 
-export const datePicker = (div: Element, currentCountdown: CountdownManager) => {
+export const datePicker = (div: Element | Node, currentCountdown: CountdownManager) => {
     let config = {
         enableTime: true,
         time_24hr: true,
@@ -14,7 +14,7 @@ export const datePicker = (div: Element, currentCountdown: CountdownManager) => 
         defaultDate: currentTime(),
         weekNumbers: true,
     };
-    const fp = flatpickr('.date-picker', {
+    const fp = flatpickr(div, {
         ...config,
         onOpen: function () {
             if (currentCountdown) {
@@ -24,7 +24,7 @@ export const datePicker = (div: Element, currentCountdown: CountdownManager) => 
         onClose: function (date) {
             console.log(date);
             let selection = date[0];
-            // console.log(selection);
+            console.log(selection);
             // console.log(format)
             print(div, 'pending');
             currentCountdown.setCountdown(selection, div);

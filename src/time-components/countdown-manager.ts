@@ -5,7 +5,7 @@ export class CountdownManager {
     // allow for null on instantiation, instantiate
     private countdown: TimerCountdown | null = null;
 
-    setCountdown(dueDate: Date, div: Element) {
+    setCountdown(dueDate: Date, div: Element | Node) {
         if (this.countdown) {
             this.countdown.stopTimerCountdown();
         }

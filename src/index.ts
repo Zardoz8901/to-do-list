@@ -5,14 +5,15 @@ import prioritySlider from './priority-slider';
 import print from './print';
 import currentDate from './time-components/current-date';
 
-const divNodeArray = document.querySelectorAll('.date-text');
+const divNodeArray = document.querySelectorAll('.flatpickr');
 
 divNodeArray.forEach((div) => {
     const currentCountdown = new CountdownManager();
     div.addEventListener('click', () => {
         const timestamp = div.parentElement.parentElement.querySelector('.timestamp');
         print(timestamp, `${currentDate()}`);
-        const calendar = datePicker(div, currentCountdown);
+        const picker = div.parentElement;
+        const calendar = datePicker(picker, currentCountdown);
         return calendar;
     });
 });

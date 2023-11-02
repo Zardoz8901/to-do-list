@@ -65,10 +65,17 @@ body {
     padding: 8px 0 0;
 }
 
+.date-picker.flatpickr-input {
+    height: 33.4px; /* Subtract padding from top to equal underline height of other inputs*/
+    background: transparent;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #000; /* Underline for inputs */
+    width: 100%;
+}
+
 /* Style inputs to have no decoration */
-input[type='text'],
-.flatpickr,
-.flatpickr > input {
+input[type='text'] {
     background: transparent;
     outline: none;
     border: none;

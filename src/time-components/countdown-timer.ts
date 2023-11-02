@@ -4,7 +4,7 @@ import currentTime from './current-time-ms';
 import formatSecond from './format-second';
 import print from '../print';
 
-function printTime(dueDate: Date, div: Element) {
+function printTime(dueDate: Date, div: Element | Node) {
     const timeBetween = formatDistance(dueDate, currentTime());
     console.log(timeBetween);
 
@@ -14,7 +14,7 @@ function printTime(dueDate: Date, div: Element) {
 export default class TimerCountdown {
     private timer: AdjustingIntervalTimer;
     printTime: Function;
-    constructor(dueDate: Date, div: Element) {
+    constructor(dueDate: Date, div: Element | Node) {
         this.timer = new AdjustingIntervalTimer(
             () => {
                 printTime(dueDate, div);
