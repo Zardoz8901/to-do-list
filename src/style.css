@@ -43,22 +43,63 @@ h6 {
 }
 
 /* end reset */
-root {
-    --text-color: rgb(27, 27, 27);
-}
-
+/* Use a system font for a 'brutalist' look */
 body {
-    color: var(--text-color);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.4;
+    background-color: #fff; /* Assuming a white background */
+    color: #000; /* Black color text for high contrast */
 }
 
-@import '~flatpickr/dist/flatpickr';
-
-.flatpickr {
-    width: 40px;
-    height: 20px;
-    background-color: blue;
+.header-container > div {
+    margin: 0 8px;
+    font-weight: bold;
 }
 
+.header-container > div:nth-child(4) {
+    position: relative;
+    left: 14px;
+}
+
+.flatpickr-input.calendar-cell {
+    padding: 8px 0 0;
+}
+
+/* Style inputs to have no decoration */
+input[type='text'],
+.flatpickr,
+.flatpickr > input {
+    background: transparent;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #000; /* Underline for inputs */
+    width: 100%;
+}
+
+/* Align text to left and ensure inputs take full width */
+.calendar-cell,
+.header-container div {
+    text-align: left;
+    width: 100%;
+}
+
+/* Remove all appearances of input elements like buttons and ranges */
+input,
+button,
+select,
+textarea {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+/* Adjust padding as necessary for visual comfort */
+.calendar-cell {
+    padding: 8px 0; /* Provide some vertical padding for each cell */
+    margin: 0 8px;
+}
+
+/* Optionally hide the visually-hidden elements completely */
 .visually-hidden {
     border-width: 0 !important;
     clip: rect(1px, 1px, 1px, 1px) !important;
@@ -70,76 +111,10 @@ body {
     width: 1px !important;
 }
 
-.calendar-element {
-    display: flex;
-    width: 100%;
-}
-
-.date-picker {
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-}
-
-.description > input {
-    width: 70ch;
-}
-
-.flatpickr-input.active {
-    box-sizing: border-box;
-    border-bottom: none;
-}
-
-.description > input,
-.title > input,
-.flatpickr-input,
-.flatpickr-input:active,
-.date-text > input {
-    background-color: transparent;
-    color: var(--text-color);
-    outline: none;
-    outline-style: none;
-    outline-offset: 0;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    border-bottom: solid rgb(28, 28, 28) 1px;
-    padding: 2px 10px;
-    margin: 0px 4px;
-}
-
-priority-slider {
-    position: relative;
-    width: 170px;
-}
-
-.priority-boxes {
-    display: flex;
-    justify-content: center;
-    position: relative;
-    padding: 2px 0;
-    width: 120px;
-}
-
-.box {
-    position: relative;
-    top: 6px;
-    width: 14px;
-    height: 14px;
-    border: 2px solid #372ea5;
-    margin-right: 5px;
-    border-radius: 2px;
-    cursor: pointer; /* corrected this */
-    transition: background 0.3s ease;
-    z-index: 2;
-}
-
-.box:not(:last-child) {
-    margin-right: 5px; /* apply margin to all boxes except the last one */
-}
-
-/* Styling the slider */
-#priority-slider-1 {
+/* You might want to keep the slider visible but minimalistic */
+.priority-slider input[type='range'] {
+    width: 100%; /* Full width */
+    background: transparent; /* No default styling */
     position: absolute;
     height: 4px;
     z-index: 1;
@@ -151,4 +126,42 @@ priority-slider {
     pointer-events: none;
     border-radius: 2px;
     outline: none;
+}
+
+/* If you want to make the priority boxes appear as simple squares */
+.box {
+    position: relative;
+    top: 4px;
+    width: 14px;
+    height: 14px;
+    border: 2px solid #372ea5;
+    border-radius: 2px;
+    cursor: pointer; /* corrected this */
+    transition: background 0.3s ease;
+    z-index: 2;
+}
+
+/* Minimalistic approach for priority boxes container */
+.priority-boxes {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    padding: 2px 0;
+    width: 120px;
+    gap: 5px;
+}
+
+/* Set up calendar table layout */
+.calendar-table {
+    display: flex;
+    flex-direction: column;
+    width: 1200px;
+    height: 800px;
+}
+
+/* Layout for the header and rows */
+.header-container,
+.calendar-element {
+    display: flex;
+    justify-content: space-between;
 }

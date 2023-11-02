@@ -7,6 +7,7 @@ import print from '../print';
 function printTime(dueDate: Date, div: Element) {
     const timeBetween = formatDistance(dueDate, currentTime());
     console.log(timeBetween);
+
     print(div, `in ${timeBetween}`);
 }
 
