@@ -66,12 +66,15 @@ body {
         'nav cal cal cal cal'
         'nav cal cal cal cal'
         'nav cal cal cal cal';
+    overflow-x: hidden;
 }
 
 #navbar {
+    width: 160px;
     grid-area: nav;
 }
 #tabholder {
+    height: 160px;
     grid-area: tab;
 }
 
@@ -92,6 +95,9 @@ body {
 .flatpickr-input.calendar-cell {
     padding: 8px 0 0;
 }
+.date-picker > input {
+    cursor: pointer;
+}
 
 .date-picker.flatpickr-input {
     height: 33.4px; /* Subtract padding from top to equal underline height of other inputs*/
@@ -100,6 +106,7 @@ body {
     border: none;
     border-bottom: 1px solid #000; /* Underline for inputs */
     width: 100%;
+    cursor: grab;
 }
 
 /* Style inputs to have no decoration */
