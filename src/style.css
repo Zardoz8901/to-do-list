@@ -153,6 +153,10 @@ textarea {
     width: 1px !important;
 }
 
+div.priority-boxes {
+    cursor: pointer;
+}
+
 /* You might want to keep the slider visible but minimalistic */
 .priority-slider input[type='range'] {
     width: 100%; /* Full width */
