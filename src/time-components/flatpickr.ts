@@ -17,10 +17,20 @@ export const datePicker = (div: Element | Node, currentCountdown: CountdownManag
     };
     const fp = flatpickr(div, {
         ...config,
-        onOpen: function () {
+        onOpen: function (date, dateStr, instance) {
             if (currentCountdown) {
                 currentCountdown.stop();
             }
+            // Check if a date is already selected, otherwise use current date
+            let currentDate = date[0] || new Date();
+
+            // Round minutes to the nearest 5
+            let minutes = currentDate.getMinutes();
+            let roundedMinutes = Math.ceil(minutes / 5) * 5;
+            currentDate.setMinutes(roundedMinutes);
+
+            // Set the time in flatpickr instance
+            instance.setDate(currentDate);
         },
         onClose: function (date) {
             console.log(date);
@@ -31,7 +41,7 @@ export const datePicker = (div: Element | Node, currentCountdown: CountdownManag
             currentCountdown.setCountdown(selection, div);
             currentCountdown.start();
         },
-        onChange(dstr, dobjs, fp) {
+        onChange(dateStr, dobjs, fp) {
             setTimeout(() => {
                 const d = fp.latestSelectedDateObj;
                 const mins = d.getMinutes();
