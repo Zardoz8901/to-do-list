@@ -6,78 +6,83 @@
         <title>Document</title>
     </head>
     <body>
-        <div id="navbar"></div>
-        <div id="tabholder"></div>
-        <div class="calendar-table">
-            <div class="header-container">
-                <div class="header-title">title</div>
-                <div class="header-description">description</div>
-                <div class="header-due">due</div>
-                <div class="header-priority">priority</div>
-                <div class="header-timestamp">created</div>
-            </div>
-            <div class="calendar-element calendar-row" id="calendar-element-1">
-                <div class="title calendar-cell">
-                    <label class="visually-hidden" for="calendar-text-1">Title</label
-                    ><input type="text" name="" id="calendar-title-1" />
+        <div class="grid-wrap">
+            <div id="navbar"></div>
+            <div id="tabholder"></div>
+            <div class="calendar-table">
+                <div class="header-container">
+                    <div class="header-title">title</div>
+                    <div class="header-description">description</div>
+                    <div class="header-due">due</div>
+                    <div class="header-priority">priority</div>
+                    <div class="header-timestamp">created</div>
                 </div>
-                <div class="description calendar-cell">
-                    <label class="visually-hidden" for="calendar-description-1">Description</label
-                    ><input type="text" name="" id="calendar-description-1" />
+                <div class="calendar-element calendar-row" id="calendar-element-1">
+                    <div class="title calendar-cell">
+                        <label class="visually-hidden" for="calendar-text-1">Title</label
+                        ><input type="text" name="" id="calendar-title-1" />
+                    </div>
+                    <div class="description calendar-cell">
+                        <label class="visually-hidden" for="calendar-description-1"
+                            >Description</label
+                        ><input type="text" name="" id="calendar-description-1" />
+                    </div>
+                    <div id="dp1" class="date-picker calendar-cell" placeholder="add time">
+                        <input class="flatpickr" type="text" placeholder="add time" />
+                    </div>
+                    <div class="priority-slider calendar-cell" id="priority-container-1">
+                        <div class="priority-boxes">
+                            <div class="box" data-priority="1"></div>
+                            <div class="box" data-priority="2"></div>
+                            <div class="box" data-priority="3"></div>
+                            <div class="box" data-priority="4"></div>
+                            <div class="box" data-priority="5"></div>
+                            <input
+                                type="range"
+                                class="priority-input"
+                                id="priority-slider-1"
+                                min="0"
+                                max="5"
+                                value="0"
+                            />
+                        </div>
+                    </div>
+                    <div class="timestamp calendar-cell" id="calendar-timestamp-1"></div>
                 </div>
-                <div id="dp1" class="date-picker calendar-cell" placeholder="add time">
-                    <input class="flatpickr" type="text" placeholder="add time" />
-                </div>
-                <div class="priority-slider calendar-cell" id="priority-container-1">
-                    <div class="priority-boxes">
-                        <div class="box" data-priority="1"></div>
-                        <div class="box" data-priority="2"></div>
-                        <div class="box" data-priority="3"></div>
-                        <div class="box" data-priority="4"></div>
-                        <div class="box" data-priority="5"></div>
+                <div class="calendar-element calendar-row" id="calendar-element-2">
+                    <div class="title calendar-cell">
+                        <label class="visually-hidden" for="calendar-title-2">Title</label>
+                        <input type="text" id="calendar-title-2" />
+                    </div>
+                    <div class="description calendar-cell">
+                        <label class="visually-hidden" for="calendar-description-2"
+                            >Description</label
+                        >
+                        <input type="text" id="calendar-description-2" />
+                    </div>
+                    <div id="dp2" class="date-picker calendar-cell">
+                        <input class="flatpickr" type="text" placeholder="add time" />
+                    </div>
+                    <div class="priority-slider calendar-cell" id="priority-container-2">
+                        <div class="priority-boxes">
+                            <div class="box" data-priority="1"></div>
+                            <div class="box" data-priority="2"></div>
+                            <div class="box" data-priority="3"></div>
+                            <div class="box" data-priority="4"></div>
+                            <div class="box" data-priority="5"></div>
+                        </div>
                         <input
                             type="range"
                             class="priority-input"
-                            id="priority-slider-1"
+                            id="priority-slider-2"
                             min="0"
                             max="5"
                             value="0"
                         />
                     </div>
-                </div>
-                <div class="timestamp calendar-cell" id="calendar-timestamp-1"></div>
-            </div>
-            <div class="calendar-element calendar-row" id="calendar-element-2">
-                <div class="title calendar-cell">
-                    <label class="visually-hidden" for="calendar-title-2">Title</label>
-                    <input type="text" id="calendar-title-2" />
-                </div>
-                <div class="description calendar-cell">
-                    <label class="visually-hidden" for="calendar-description-2">Description</label>
-                    <input type="text" id="calendar-description-2" />
-                </div>
-                <div id="dp2" class="date-picker calendar-cell">
-                    <input class="flatpickr" type="text" placeholder="add time" />
-                </div>
-                <div class="priority-slider calendar-cell" id="priority-container-2">
-                    <div class="priority-boxes">
-                        <div class="box" data-priority="1"></div>
-                        <div class="box" data-priority="2"></div>
-                        <div class="box" data-priority="3"></div>
-                        <div class="box" data-priority="4"></div>
-                        <div class="box" data-priority="5"></div>
+                    <div class="timestamp calendar-cell">
+                        <!-- Placeholder for timestamp, you can fill it with actual data using JS -->
                     </div>
-                    <input
-                        type="range"
-                        class="priority-input"
-                        id="priority-slider-2"
-                        min="0"
-                        max="5"
-                        value="0"
-                    />
-                </div>
-                <div class="timestamp calendar-cell">
-                    <!-- Placeholder for timestamp, you can fill it with actual data using JS -->
                 </div>
             </div>
         </div>

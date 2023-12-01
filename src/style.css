@@ -56,6 +56,12 @@ body {
     line-height: 1.4;
     background-color: #fff; /* Assuming a white background */
     color: #000; /* Black color text for high contrast */
+    overflow-x: hidden;
+}
+
+.grid-wrap {
+    width: 80vw;
+    height: 100vh;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(6, 1fr);
@@ -66,7 +72,6 @@ body {
         'nav cal cal cal cal'
         'nav cal cal cal cal'
         'nav cal cal cal cal';
-    overflow-x: hidden;
 }
 
 #navbar {

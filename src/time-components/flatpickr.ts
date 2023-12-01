@@ -12,6 +12,7 @@ export const datePicker = (div: Element | Node, currentCountdown: CountdownManag
         time_24hr: true,
         dateFormat: 'Y-m-d H:i',
         defaultDate: currentTime(),
+        minuteIncrement: 5,
         weekNumbers: true,
     };
     const fp = flatpickr(div, {
@@ -29,6 +30,16 @@ export const datePicker = (div: Element | Node, currentCountdown: CountdownManag
             print(div, 'pending');
             currentCountdown.setCountdown(selection, div);
             currentCountdown.start();
+        },
+        onChange(dstr, dobjs, fp) {
+            setTimeout(() => {
+                const d = fp.latestSelectedDateObj;
+                const mins = d.getMinutes();
+
+                if (mins % 5) d.setMinutes(5 * Math.round(d.getMinutes() / 5));
+
+                fp.setDate(d, false);
+            }, 100);
         },
         mode: 'single',
         minDate: 'today',
