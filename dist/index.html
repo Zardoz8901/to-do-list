@@ -11,6 +11,9 @@
             <div id="tabholder"></div>
             <div class="calendar-table">
                 <div class="header-container">
+                    <div class="header-check">
+                        <input type="checkbox" checked />
+                    </div>
                     <div class="header-title">title</div>
                     <div class="header-description">description</div>
                     <div class="header-due">due</div>
@@ -18,6 +21,10 @@
                     <div class="header-timestamp">created</div>
                 </div>
                 <div class="calendar-element calendar-row" id="calendar-element-1">
+                    <div class="complete-task calendar-cell">
+                        <input type="checkbox" id="check1" name="check1" />
+                        <label for="check1"></label>
+                    </div>
                     <div class="title calendar-cell">
                         <label class="visually-hidden" for="calendar-text-1">Title</label
                         ><input type="text" name="" id="calendar-title-1" />
@@ -49,7 +56,12 @@
                     </div>
                     <div class="timestamp calendar-cell" id="calendar-timestamp-1"></div>
                 </div>
+
                 <div class="calendar-element calendar-row" id="calendar-element-2">
+                    <div class="complete-task calendar-cell">
+                        <input type="checkbox" id="check2" name="check2" />
+                        <label for="check2"></label>
+                    </div>
                     <div class="title calendar-cell">
                         <label class="visually-hidden" for="calendar-title-2">Title</label>
                         <input type="text" id="calendar-title-2" />

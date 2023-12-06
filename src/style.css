@@ -44,6 +44,7 @@ h6 {
 
 /* end reset */
 /* Use a system font for a 'brutalist' look */
+/* General Layout */
 html {
     width: 100vw;
     height: 100vh;
@@ -60,6 +61,7 @@ body {
     overflow-x: hidden;
 }
 
+/* Grid Layout */
 .grid-wrap {
     width: 80vw;
     height: 100vh;
@@ -79,6 +81,7 @@ body {
     width: 160px;
     grid-area: nav;
 }
+
 #tabholder {
     height: 160px;
     grid-area: tab;
@@ -86,87 +89,84 @@ body {
 
 .calendar-table {
     grid-area: cal;
+    display: flex;
+    flex-direction: column;
+    width: 1200px;
+    height: 800px;
 }
 
-.calendar-table .header-container > div {
+/* Header and Calendar Cell Styling */
+.header-container,
+.calendar-element {
+    display: flex;
+    justify-content: space-between;
+}
+
+.header-container > div,
+.calendar-cell {
     margin: 0 8px;
     font-weight: bold;
+    text-align: left;
+    width: 100%;
 }
 
-.header-container > div:nth-child(4) {
-    position: relative;
-    left: 14px;
+.calendar-cell {
+    font-weight: normal;
+    padding: 8px 0;
+}
+
+/* Input Fields Styling */
+input[type='text'],
+.date-picker.flatpickr-input {
+    background: transparent;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #000; /* Underline for inputs */
+    width: 100%;
+}
+
+.date-picker.flatpickr-input {
+    height: 33.4px; /* Subtract padding from top to equal underline height of other inputs */
+    cursor: grab;
 }
 
 .flatpickr-input.calendar-cell {
     padding: 8px 0 0;
 }
-.date-picker > input {
-    cursor: pointer;
-}
 
-.date-picker.flatpickr-input {
-    height: 33.4px; /* Subtract padding from top to equal underline height of other inputs*/
-    background: transparent;
-    outline: none;
-    border: none;
-    border-bottom: 1px solid #000; /* Underline for inputs */
-    width: 100%;
-    cursor: grab;
-}
-
-/* Style inputs to have no decoration */
+.date-picker > input,
 input[type='text'] {
-    background: transparent;
-    outline: none;
-    border: none;
-    border-bottom: 1px solid #000; /* Underline for inputs */
-    width: 100%;
-}
-
-/* Align text to left and ensure inputs take full width */
-.calendar-cell,
-.header-container div {
-    text-align: left;
-    width: 100%;
-}
-
-/* Remove all appearances of input elements like buttons and ranges */
-input,
-button,
-select,
-textarea {
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-}
-
-/* Adjust padding as necessary for visual comfort */
-.calendar-cell {
-    padding: 8px 0; /* Provide some vertical padding for each cell */
-    margin: 0 8px;
-}
-
-/* Optionally hide the visually-hidden elements completely */
-.visually-hidden {
-    border-width: 0 !important;
-    clip: rect(1px, 1px, 1px, 1px) !important;
-    height: 1px !important;
-    overflow: hidden !important;
-    padding: 0 !important;
-    position: absolute !important;
-    white-space: nowrap !important;
-    width: 1px !important;
-}
-
-div.priority-boxes {
     cursor: pointer;
 }
 
-/* You might want to keep the slider visible but minimalistic */
+/* Priority Box Styling */
+div.priority-boxes,
+.priority-boxes {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    padding: 2px 0;
+    width: 120px;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.box {
+    position: relative;
+    top: 5px;
+    width: 14px;
+    height: 14px;
+    border: 2px solid #372ea5;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    z-index: 2;
+}
+
+/* Priority Slider Styling */
 .priority-slider input[type='range'] {
-    width: 100%; /* Full width */
-    background: transparent; /* No default styling */
+    width: 100%;
+    background: transparent;
     position: absolute;
     height: 4px;
     z-index: 1;
@@ -180,37 +180,41 @@ div.priority-boxes {
     outline: none;
 }
 
-/* If you want to make the priority boxes appear as simple squares */
-.box {
+/* Checkbox Styling */
+.header-check,
+.complete-task,
+input[type='checkbox'] {
     position: relative;
-    top: 5px;
-    width: 14px;
-    height: 14px;
-    border: 2px solid #372ea5;
-    border-radius: 2px;
-    cursor: pointer; /* corrected this */
-    transition: background 0.3s ease;
-    z-index: 2;
+    display: flex;
+    width: 24px;
+    max-width: 26px;
 }
 
-/* Minimalistic approach for priority boxes container */
-.priority-boxes {
+.header-check input[type='checkbox'] {
+    opacity: 0.6;
+    pointer-events: none;
     display: flex;
     justify-content: center;
+}
+
+/* Miscellaneous */
+.visually-hidden {
+    border-width: 0 !important;
+    clip: rect(1px, 1px, 1px, 1px) !important;
+    height: 1px !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    position: absolute !important;
+    white-space: nowrap !important;
+    width: 1px !important;
+}
+
+.header-priority {
     position: relative;
-    padding: 2px 0;
-    width: 120px;
-    gap: 5px;
+    left: 14px;
 }
 
-/* Set up calendar table layout */
-.calendar-table {
-    display: flex;
-    flex-direction: column;
-    width: 1200px;
-    height: 800px;
-}
-
+/* Max Width Settings */
 .header-priority,
 .priority-slider {
     max-width: 130px;
@@ -230,11 +234,4 @@ div.priority-boxes {
 .description {
     min-width: 440px;
     width: 440px;
-}
-
-/* Layout for the header and rows */
-.header-container,
-.calendar-element {
-    display: flex;
-    justify-content: space-between;
 }
