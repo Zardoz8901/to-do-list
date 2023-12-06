@@ -186,15 +186,27 @@ div.priority-boxes,
 input[type='checkbox'] {
     position: relative;
     display: flex;
+    justify-content: center;
     width: 24px;
-    max-width: 26px;
+    max-width: 24px;
+}
+
+.complete-task {
+    max-width: 24px;
 }
 
 .header-check input[type='checkbox'] {
-    opacity: 0.6;
+    opacity: 0.7;
     pointer-events: none;
     display: flex;
     justify-content: center;
+}
+
+.header-check {
+    display: flex;
+    width: 18px;
+    justify-content: center;
+    padding: 3px;
 }
 
 /* Miscellaneous */
