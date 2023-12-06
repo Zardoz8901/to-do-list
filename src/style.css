@@ -56,6 +56,7 @@ body {
     line-height: 1.4;
     background-color: #fff; /* Assuming a white background */
     color: #000; /* Black color text for high contrast */
+    margin: 0 60px;
     overflow-x: hidden;
 }
 
@@ -208,6 +209,27 @@ div.priority-boxes {
     flex-direction: column;
     width: 1200px;
     height: 800px;
+}
+
+.header-priority,
+.priority-slider {
+    max-width: 130px;
+}
+
+.header-due,
+.date-picker {
+    max-width: 100px;
+}
+
+.header-title,
+.title {
+    max-width: 220px;
+}
+
+.header-description,
+.description {
+    min-width: 440px;
+    width: 440px;
 }
 
 /* Layout for the header and rows */
