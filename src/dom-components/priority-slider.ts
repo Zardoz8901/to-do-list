@@ -1,6 +1,6 @@
 // piority-slider module that allows for sliding a click in box to set priority
 export default function prioritySlider() {
-    const calendarElements = document.querySelectorAll('.calendar-element');
+    const calendarElements = document.querySelectorAll('.to-do-row');
     calendarElements.forEach((calendarElement) => {
         const container = calendarElement.querySelector('.priority-slider');
         if (!container) {

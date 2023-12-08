@@ -87,7 +87,7 @@ body {
     grid-area: tab;
 }
 
-.calendar-table {
+.to-do.table {
     grid-area: cal;
     display: flex;
     flex-direction: column;
@@ -97,25 +97,30 @@ body {
 
 /* Header and Calendar Cell Styling */
 .header-container,
-.calendar-element {
+.to-do-row {
     display: flex;
     justify-content: space-between;
 }
 
 .header-container > div,
-.calendar-cell {
+.to-do-cell {
     margin: 0 8px;
     font-weight: bold;
     text-align: left;
     width: 100%;
 }
 
-.calendar-cell {
+.to-do-cell {
     font-weight: normal;
     padding: 8px 0;
 }
 
 /* Input Fields Styling */
+
+input[type='text'] {
+    text-align: left;
+}
+
 input[type='text'],
 .date-picker.flatpickr-input {
     background: transparent;
@@ -130,7 +135,7 @@ input[type='text'],
     cursor: grab;
 }
 
-.flatpickr-input.calendar-cell {
+.flatpickr-input.to-do-cell {
     padding: 8px 0 0;
 }
 
@@ -209,6 +214,35 @@ input[type='checkbox'] {
     padding: 3px;
 }
 
+/* New To-Do Button */
+.new-to-do {
+    position: relative;
+    min-width: 24px;
+    width: 24px;
+    height: 24px;
+    top: 9px;
+    right: 20px;
+}
+
+.to-do-row > .new-to-do {
+    border: none;
+    color: none;
+    background-color: white;
+    background-image: url(/node_modules/@tabler/icons/icons/text-plus.svg);
+    transition: 0.1s;
+}
+
+.to-do-row > .new-to-do:hover {
+    transform: scale(1.1);
+    background-color: lightgrey;
+    box-shadow: 0 0 2px 2px lightgrey;
+}
+
+.to-do-row > .new-to-do:active {
+    transform: scale(0.9);
+    background-color: lightgrey;
+}
+
 /* Miscellaneous */
 .visually-hidden {
     border-width: 0 !important;
@@ -234,7 +268,7 @@ input[type='checkbox'] {
 
 .header-due,
 .date-picker {
-    max-width: 100px;
+    max-width: 150px;
 }
 
 .header-title,
@@ -246,4 +280,9 @@ input[type='checkbox'] {
 .description {
     min-width: 440px;
     width: 440px;
+}
+
+.new-to-do.header {
+    max-width: 20px;
+    margin: 0;
 }

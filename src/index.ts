@@ -2,6 +2,7 @@ import './style.css';
 import { CountdownManager } from './time-components/countdown-manager';
 import { datePicker } from './time-components/flatpickr';
 import prioritySlider from './dom-components/priority-slider';
+import instantiateToDo from './dom-components/instantiate-to-do';
 import print from './dom-components/print';
 import currentDate from './time-components/current-date';
 
@@ -16,4 +17,5 @@ divNodeArray.forEach((div) => {
     });
 });
 
+instantiateToDo();
 prioritySlider();
