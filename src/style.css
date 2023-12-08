@@ -244,6 +244,8 @@ input[type='checkbox'] {
 }
 
 /* Miscellaneous */
+
+/* Collapse structure, hie component */
 .visually-hidden {
     border-width: 0 !important;
     clip: rect(1px, 1px, 1px, 1px) !important;
@@ -253,6 +255,11 @@ input[type='checkbox'] {
     position: absolute !important;
     white-space: nowrap !important;
     width: 1px !important;
+}
+
+/* Retain structure, hide component */
+.disappear {
+    visibility: hidden;
 }
 
 .header-priority {

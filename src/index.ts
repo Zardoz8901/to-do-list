@@ -9,8 +9,8 @@ import currentDate from './time-components/current-date';
 const divNodeArray = document.querySelectorAll('.flatpickr');
 
 divNodeArray.forEach((div) => {
-    const currentCountdown = new CountdownManager();
     div.addEventListener('click', () => {
+        const currentCountdown = new CountdownManager();
         const picker = div.parentElement;
         const calendar = datePicker(picker, currentCountdown);
         return calendar;
