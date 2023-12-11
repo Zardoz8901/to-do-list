@@ -5,6 +5,7 @@ import prioritySlider from './dom-components/priority-slider';
 import instantiateToDo from './dom-components/instantiate-to-do';
 import print from './dom-components/print';
 import currentDate from './time-components/current-date';
+import instantiateTab from './dom-components/instantiate-tab';
 
 const divNodeArray = document.querySelectorAll('.flatpickr');
 
@@ -18,4 +19,5 @@ divNodeArray.forEach((div) => {
 });
 
 instantiateToDo();
+instantiateTab();
 prioritySlider();

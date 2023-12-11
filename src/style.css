@@ -45,6 +45,25 @@ h6 {
 /* end reset */
 /* Use a system font for a 'brutalist' look */
 /* General Layout */
+:root {
+    --shadow-color: 0deg 0% 60%;
+    --shadow-elevation-low: 0px -0.5px 0.6px hsl(var(--shadow-color) / 0.38),
+        0px -0.8px 0.9px -1.2px hsl(var(--shadow-color) / 0.38),
+        -0.1px -2.1px 2.4px -2.5px hsl(var(--shadow-color) / 0.38);
+    --shadow-elevation-medium: 0px -0.5px 0.6px hsl(var(--shadow-color) / 0.4),
+        -0.1px -1.7px 1.9px -0.8px hsl(var(--shadow-color) / 0.4),
+        -0.1px -4.3px 4.8px -1.7px hsl(var(--shadow-color) / 0.4),
+        -0.3px -10.5px 11.8px -2.5px hsl(var(--shadow-color) / 0.4);
+    --shadow-elevation-high: 0px -0.5px 0.6px hsl(var(--shadow-color) / 0.37),
+        -0.1px -3.2px 3.6px -0.4px hsl(var(--shadow-color) / 0.37),
+        -0.2px -5.9px 6.6px -0.7px hsl(var(--shadow-color) / 0.37),
+        -0.3px -9.8px 11px -1.1px hsl(var(--shadow-color) / 0.37),
+        -0.5px -15.7px 17.7px -1.4px hsl(var(--shadow-color) / 0.37),
+        -0.8px -24.5px 27.6px -1.8px hsl(var(--shadow-color) / 0.37),
+        -1.2px -37.3px 42px -2.1px hsl(var(--shadow-color) / 0.37),
+        -1.8px -55px 61.9px -2.5px hsl(var(--shadow-color) / 0.37);
+}
+
 html {
     width: 100vw;
     height: 100vh;
@@ -82,17 +101,75 @@ body {
     grid-area: nav;
 }
 
-#tabholder {
-    height: 160px;
-    grid-area: tab;
-}
-
 .to-do.table {
     grid-area: cal;
     display: flex;
     flex-direction: column;
     width: 1200px;
     height: 800px;
+}
+
+/* Tabholder and tabs */
+#tabholder {
+    height: 160px;
+    padding-bottom: 32px;
+    grid-area: tab;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    overflow: visible;
+    z-index: 0;
+    margin-right: 150px;
+}
+
+.tab {
+    min-width: 80px;
+    text-align: center;
+    margin: 0 8px;
+    padding: 0 10px;
+    background-color: white;
+    box-shadow: var(--shadow-elevation-medium);
+
+    /* Flex properties*/
+    flex-basis: 110px;
+    flex-grow: 0;
+    flex-shrink: 1;
+}
+
+.tab input[type='text'] {
+    text-align: center;
+    border: none;
+}
+
+/* .new-tab {
+    position: relative;
+    width: 24px;
+    height: 22px;
+    right: 20px;
+    background-image: url(/node_modules/@tabler/icons/icons/new-section.svg);
+} */
+
+.arrow {
+    order: -1;
+    z-index: 2;
+    position: relative;
+    right: 8px;
+    min-width: 24px;
+    height: 22px;
+    background-image: url(/node_modules/@tabler/icons/icons/arrow-bar-right.svg);
+    transition: 0.1s ease-in-out;
+}
+
+.arrow:hover {
+    transform: scale(1.1);
+    background-color: lightgrey;
+    box-shadow: 0 0 2px 2px lightgrey;
+}
+
+.arrow:active {
+    transform: scale(0.9);
+    background-color: white;
+    box-shadow: none;
 }
 
 /* Header and Calendar Cell Styling */
@@ -229,7 +306,7 @@ input[type='checkbox'] {
     color: none;
     background-color: white;
     background-image: url(/node_modules/@tabler/icons/icons/text-plus.svg);
-    transition: 0.1s;
+    transition: 0.1s ease-in-out;
 }
 
 .to-do-row > .new-to-do:hover {
@@ -240,7 +317,8 @@ input[type='checkbox'] {
 
 .to-do-row > .new-to-do:active {
     transform: scale(0.9);
-    background-color: lightgrey;
+    background-color: white;
+    box-shadow: none;
 }
 
 /* Miscellaneous */
