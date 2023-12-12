@@ -7,8 +7,8 @@ class tabObject {
     createTab() {
         return `
         <div class="tab" id="tab-${tabCounter}">
-            <label class="visually-hidden" for="tab-${tabCounter}">Tab</label
-            ><input type="text" name="tab-${tabCounter}" id="tab-text-${tabCounter}" placeholder="tab ${tabCounter}"/>
+            <label for="tab-${tabCounter}">to-do ${tabCounter}</label
+            ><input type="text" name="tab-${tabCounter}" id="tab-text-${tabCounter}"/>
         </div>
     `;
     }
@@ -18,7 +18,7 @@ class tabObject {
     }
 }
 
-let tabCounter = 1; // Initialize counter
+let tabCounter = 0; // Initialize counter
 
 export default function addNewTab() {
     const container = document.querySelector('#tabholder');

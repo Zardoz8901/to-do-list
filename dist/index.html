@@ -5,19 +5,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
     <script defer src="runtime.js"></script><script defer src="bundle.js"></script></head>
-   
     <body> 
-  
         <div class="grid-wrap">
             <div id="navbar"></div>
             <div id="tabholder">
-                <div class="tab" id="tab-1">
-                    <label class="visually-hidden" for="tab-1">Title</label
-                    ><input type="text" name="title-1" id="tab-text-1" placeholder="tab 1"/>
-                </div>
                 <div class="arrow" id="new-tab"></div>
             </div>
-            <div class="to-do table">
+            <div class="to-do table" id="table-1">
                 <div class="header-container">
                     <div class="new-to-do header"></div>
                     <div class="header-check">
@@ -28,45 +22,7 @@
                     <div class="header-due">due</div>
                     <div class="header-priority">priority</div>
                     <div class="header-timestamp">created</div>
-                </div>
-                <div class="to-do-row" id="to-do-1">
-                    <button id="new-to-do-1" class="new-to-do">  
-                    </button>
-                    <div class="complete-task to-do-cell">
-                        <input type="checkbox" id="check-1" name="check-1" />
-                        <label for="check-1"></label>
-                    </div>
-                    <div class="title to-do-cell">
-                        <label class="visually-hidden" for="title-1">Title</label
-                        ><input type="text" name="title-1" id="title-1" />
-                    </div>
-                    <div class="description to-do-cell">
-                        <label class="visually-hidden" for="description-1">Description</label
-                        ><input type="text" name="description-1" id="description-1" />
-                    </div>
-                    <div id="date-picker-1" class="date-picker to-do-cell" placeholder="add time">
-                        <input class="flatpickr" type="text" placeholder="add time" />
-                    </div>
-                    <div class="priority-slider to-do-cell" id="priority-container-1">
-                        <div class="priority-boxes">
-                            <div class="box" data-priority="1"></div>
-                            <div class="box" data-priority="2"></div>
-                            <div class="box" data-priority="3"></div>
-                            <div class="box" data-priority="4"></div>
-                            <div class="box" data-priority="5"></div>
-                            <input
-                                type="range"
-                                class="priority-input"
-                                id="priority-slider-1"
-                                min="0"
-                                max="5"
-                                value="0"
-                            />
-                        </div>
-                    </div>
-                    <div class="timestamp to-do-cell" id="timestamp-1"></div>
-                </div>
-                
+                </div>              
                 </div>
             </div>
         </div>

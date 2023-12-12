@@ -124,30 +124,27 @@ body {
 
 .tab {
     min-width: 80px;
+    height: 24px;
     text-align: center;
     margin: 0 8px;
     padding: 0 10px;
     background-color: white;
     box-shadow: var(--shadow-elevation-medium);
-
+    cursor: pointer;
     /* Flex properties*/
     flex-basis: 110px;
     flex-grow: 0;
     flex-shrink: 1;
 }
 
+.tab > label {
+    cursor: pointer;
+}
+
 .tab input[type='text'] {
     text-align: center;
     border: none;
 }
-
-/* .new-tab {
-    position: relative;
-    width: 24px;
-    height: 22px;
-    right: 20px;
-    background-image: url(/node_modules/@tabler/icons/icons/new-section.svg);
-} */
 
 .arrow {
     order: -1;
@@ -177,6 +174,10 @@ body {
 .to-do-row {
     display: flex;
     justify-content: space-between;
+}
+
+.to-do-row {
+    z-index: 0;
 }
 
 .header-container > div,
@@ -299,6 +300,8 @@ input[type='checkbox'] {
     height: 24px;
     top: 9px;
     right: 20px;
+    visibility: visible;
+    z-index: 1;
 }
 
 .to-do-row > .new-to-do {
