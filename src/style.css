@@ -218,6 +218,7 @@ input[type='text'],
 
 .flatpickr-input.to-do-cell {
     padding: 8px 0 0;
+    caret-color: transparent;
 }
 
 .date-picker > input,

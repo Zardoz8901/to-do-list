@@ -45,7 +45,8 @@ export default class ProjectManager {
     }
 
     private renderTabsForProject(project: Project) {
-        project.tabs.forEach((tab) => RenderUtils.renderTab(tab));
+        const latestTab = project.tabs[project.tabs.length - 1];
+        RenderUtils.renderTab(latestTab);
     }
 
     private renderToDosForTab(tab: Tab) {

@@ -26,4 +26,12 @@ export default function initDom() {
     addNewRow.addEventListener('click', () => {
         projectManager.addToDoToTab(1, 1);
     });
+    const addNewTab = document.querySelector('#new-tab');
+    addNewTab.addEventListener('click', () => {
+        projectManager.addTabToProject(1);
+    });
+    const addNewProject = document.querySelector('#new-project-1');
+    addNewProject.addEventListener('click', () => {
+        projectManager.addProject();
+    });
 }
