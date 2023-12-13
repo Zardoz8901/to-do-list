@@ -20,7 +20,7 @@ class projectObject {
     }
 }
 
-let projectCounter = 1; // Initialize counter
+let projectCounter = 0; // Initialize counter
 
 export default function addNewProject() {
     const container = document.querySelector('#project-container');
