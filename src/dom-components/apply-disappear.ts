@@ -1,5 +1,5 @@
-export default function applyDisappear(value: number) {
-    const newToDo = document.querySelector(`#new-to-do-${value}`);
+export default function applyDisappear(query: string, value: number) {
+    const newToDo = document.querySelector(query + value);
     if (value > 1) {
         newToDo.classList.add('disappear');
     }

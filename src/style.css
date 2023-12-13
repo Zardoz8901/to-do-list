@@ -62,23 +62,6 @@ h6 {
         -0.8px -24.5px 27.6px -1.8px hsl(var(--shadow-color) / 0.37),
         -1.2px -37.3px 42px -2.1px hsl(var(--shadow-color) / 0.37),
         -1.8px -55px 61.9px -2.5px hsl(var(--shadow-color) / 0.37);
-
-    --shadow-elevation-corner-low: 0.5px 0.5px 0.8px hsl(var(--shadow-color) / 0.34),
-        0.8px 0.8px 1.3px -1.2px hsl(var(--shadow-color) / 0.34),
-        1.9px 2px 3.1px -2.5px hsl(var(--shadow-color) / 0.34);
-    --shadow-elevation-corner-medium: 0.5px 0.5px 0.8px hsl(var(--shadow-color) / 0.36),
-        -0.5px -0.5px 0.8px hsl(var(--shadow-color) / 0.36),
-        -1.6px -1.7px 2.6px -0.8px hsl(var(--shadow-color) / 0.36),
-        -4.1px -4.2px 6.6px -1.7px hsl(var(--shadow-color) / 0.36),
-        -9.9px -10.2px 16px -2.5px hsl(var(--shadow-color) / 0.36);
-    --shadow-elevation-corner-high: 0.5px 0.5px 0.8px hsl(var(--shadow-color) / 0.34),
-        2.8px 2.9px 4.5px -0.4px hsl(var(--shadow-color) / 0.34),
-        5.2px 5.4px 8.4px -0.7px hsl(var(--shadow-color) / 0.34),
-        8.6px 8.9px 13.9px -1.1px hsl(var(--shadow-color) / 0.34),
-        13.7px 14.2px 22.2px -1.4px hsl(var(--shadow-color) / 0.34),
-        21.4px 22.1px 34.6px -1.8px hsl(var(--shadow-color) / 0.34),
-        32.6px 33.6px 52.7px -2.1px hsl(var(--shadow-color) / 0.34),
-        48px 49.5px 77.6px -2.5px hsl(var(--shadow-color) / 0.34);
 }
 
 html {
@@ -95,12 +78,14 @@ body {
     color: #000; /* Black color text for high contrast */
     margin: 0 60px;
     overflow-x: hidden;
+    display: flex;
+    justify-content: center;
 }
 
 /* Grid Layout */
 .grid-wrap {
     width: 80vw;
-    height: 100vh;
+    height: 1080px;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(6, 1fr);
@@ -376,30 +361,31 @@ input[type='checkbox'] {
 /* Projects */
 #navbar {
     flex-direction: column;
-    align-items: flex-end;
+    align-items: center;
 }
 
 .project-container {
     display: flex;
+    flex-wrap: wrap;
+    width: 172px;
+    margin-left: 20px;
 }
 
 .project {
-    order: 2;
     text-align: center;
     height: 24px;
     width: 110px;
     padding: 10;
-    margin: 8px;
-    box-shadow: var(--shadow-elevation-corner-medium);
+    margin: 8px 8px 18px 8px;
+    box-shadow: var(--shadow-elevation-medium);
 }
 
 .arrow-down {
-    order: 1;
     z-index: 2;
     display: flex;
     position: relative;
     top: 6px;
-    margin-right: 12px;
+    margin-right: 22px;
     min-width: 24px;
     height: 24px;
     background-repeat: no-repeat;

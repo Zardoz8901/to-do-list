@@ -11,7 +11,7 @@ class ToDoRow {
     createRowHTML() {
         return `
             <div class="to-do-row" id="to-do-${toDoCounter}">
-                <button id="new-to-do-${toDoCounter}" class="new-to-do "></button>
+                <button id="new-to-do-${toDoCounter}" class="new-to-do"></button>
                 <div class="complete-task to-do-cell">
                     <input type="checkbox" id="check-${toDoCounter}" name="check-${toDoCounter}" />
                     <label for="check-${toDoCounter}"></label>
@@ -60,7 +60,7 @@ export default function addNewToDoRow() {
     const container = document.querySelector('.to-do.table');
     const newToDoRow = new ToDoRow(toDoCounter++);
     newToDoRow.appendToDOM(container);
-    applyDisappear(toDoCounter++);
+    applyDisappear('#new-to-do-', toDoCounter);
     instantiateDatePicker();
     prioritySlider();
 }
