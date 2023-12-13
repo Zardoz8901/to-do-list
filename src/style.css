@@ -99,7 +99,7 @@ body {
 }
 
 #navbar {
-    width: 220px;
+    width: 260px;
     grid-area: nav;
     display: flex;
 }
@@ -368,6 +368,7 @@ input[type='checkbox'] {
     display: flex;
     flex-wrap: wrap;
     width: 172px;
+    margin-right: 40px;
     margin-left: 20px;
 }
 

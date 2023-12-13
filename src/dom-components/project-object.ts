@@ -10,7 +10,7 @@ class projectObject {
         return `
         <div class="arrow-down" id="new-project-${projectCounter}"></div>
         <div class="project" id="project-${projectCounter}">
-                        project-${projectCounter}
+                        project ${projectCounter}
                     </div> 
     `;
     }
