@@ -4,13 +4,16 @@ import ToDo from './to-do-class';
 import RenderUtils from './render-utils';
 
 export default class ProjectManager {
-    private projects: Project[] = [];
+    public projects: Project[] = [];
     private projectCounter: number = 1;
-    private tabCounter: number = 1;
     private toDoCounter: number = 1;
 
     public addProject() {
         const newProject = new Project(this.projectCounter++);
+        if (this.projects.length >= 15) {
+            console.log(`Cannot add more than 15 projects`);
+            return;
+        }
         this.projects.push(newProject);
         this.renderProject(newProject);
     }
@@ -19,7 +22,14 @@ export default class ProjectManager {
         const project = this.projects.find((p) => p.id === projectId);
         if (!project) return;
 
-        const newTab = new Tab(this.tabCounter++);
+        // Check if project already has 10 tabs
+        if (project.tabs.length >= 10) {
+            console.error(`Cannot add more than 10 tabs to project ID: ${projectId}`);
+            return;
+        }
+
+        const newTabId = project.tabs.length + 1;
+        const newTab = new Tab(newTabId);
         project.tabs.push(newTab);
         this.renderTabsForProject(project);
     }
@@ -29,10 +39,16 @@ export default class ProjectManager {
         const tab = project?.tabs.find((t) => t.id === tabId);
         if (!tab) return;
 
+        if (tab.toDos.length >= 17) {
+            console.error(`Cannot add more than 17 to-dos to tab ID: ${tabId}`);
+            return;
+        }
+
         if (tab) {
-            const newToDo = new ToDo(this.toDoCounter++);
+            const newToDoId = tab.toDos.length + 1;
+            const newToDo = new ToDo(newToDoId);
             tab.toDos.push(newToDo);
-            this.renderToDosForTab(tab); // Ensure this method is called here!
+            this.renderToDosForTab(tab, project); // Ensure this method is called here!
         } else {
             console.error(
                 `Project or Tab not found, cannot add ToDo. Project ID: ${projectId}, Tab ID: ${tabId}`
@@ -47,7 +63,7 @@ export default class ProjectManager {
             this.updateProjectClass(project, false);
             project.tabs.forEach((tab) => {
                 tab.isDisplayed = false;
-                this.updateTabVisibility(tab, false);
+                this.updateTabVisibility(tab, false, project.id);
             });
         });
 
@@ -58,24 +74,90 @@ export default class ProjectManager {
             this.updateProjectClass(project, true);
             project.tabs.forEach((tab) => {
                 tab.isDisplayed = true;
-                this.updateTabVisibility(tab, true);
+                this.updateTabVisibility(tab, true, project.id);
             });
         }
         console.log(project);
     }
 
-    private updateTabVisibility(tab: Tab, makeVisible: boolean) {
-        const tabElement = document.querySelector(`[id="tab-${tab.id}"]`);
-        if (makeVisible) {
-            tabElement?.classList.add('visually-hidden');
+    public setActiveTab(projectId: number, tabId: number) {
+        // Locate the active project
+        const project = this.projects.find((p) => p.id === projectId);
+        if (project) {
+            // First, set all tabs and their to-dos to inactive/not displayed
+            project.tabs.forEach((tab) => {
+                tab.isActive = false;
+                this.updateTabClass(project, tab, false);
+                tab.toDos.forEach((toDo) => {
+                    toDo.isDisplayed = false;
+                    this.updateToDoVisibility(toDo, false, tab.id, project.id);
+                });
+            });
+
+            // Then, find and set the specified tab to active/displayed along with its to-dos
+            const activeTab = project.tabs.find((t) => t.id === tabId);
+            if (activeTab) {
+                activeTab.isActive = true;
+                this.updateTabClass(project, activeTab, true);
+                activeTab.toDos.forEach((toDo) => {
+                    toDo.isDisplayed = true;
+                    this.updateToDoVisibility(toDo, true, tabId, projectId);
+                });
+            } else {
+                console.error(`Tab with ID: ${tabId} not found in project with ID: ${projectId}`);
+            }
         } else {
-            tabElement?.classList.remove('visually-hidden');
+            console.error(`Project with ID: ${projectId} not found.`);
+        }
+    }
+
+    private updateTabVisibility(tab: Tab, makeVisible: boolean, projectId: number) {
+        const tabElement = document.querySelector(`[id="project-${projectId}-tab-${tab.id}"]`);
+        if (tabElement) {
+            if (makeVisible) {
+                tabElement.classList.remove('visually-hidden');
+                tab.toDos.forEach((toDo) => {
+                    this.updateToDoVisibility(toDo, true, tab.id, projectId);
+                });
+            } else {
+                tabElement.classList.add('visually-hidden');
+                tab.toDos.forEach((toDo) => {
+                    this.updateToDoVisibility(toDo, false, tab.id, projectId);
+                });
+            }
+        } else {
+            console.error(
+                `Tab DOM element with id="project-${projectId}-tab-${tab.id}" not found.`
+            );
         }
         console.log(tabElement);
     }
 
+    private updateToDoVisibility(
+        toDo: ToDo,
+        makeVisible: boolean,
+        tabId: number,
+        projectId: number
+    ) {
+        const toDoElement = document.querySelector(
+            `#to-do-project-${projectId}-tab-${tabId}-todo-${toDo.id}`
+        );
+        if (toDoElement) {
+            if (makeVisible) {
+                toDoElement.classList.remove('visually-hidden');
+            } else {
+                toDoElement.classList.add('visually-hidden');
+            }
+        } else {
+            console.error(
+                `toDo DOM element with id="project-${projectId}-tab-${tabId}-todo-${toDo.id}" not found.`
+            );
+        }
+        console.log(toDoElement);
+    }
+
     private updateProjectClass(project: Project, isActive: boolean) {
-        // Select project DOM element using a unique identifier, e.g., 'data-id' attribute
+        // Select project DOM element using a unique identifier
         const projectElement = document.querySelector(`[id="project-${project.id}"]`);
         if (projectElement) {
             projectElement.classList.toggle('active', isActive);
@@ -85,17 +167,24 @@ export default class ProjectManager {
         }
     }
 
+    private updateTabClass(project: Project, tab: Tab, isActive: boolean) {
+        const tabElement = document.querySelector(`[id="project-${project.id}-tab-${tab.id}"]`);
+        if (tabElement) {
+            tabElement.classList.toggle('active', isActive);
+        }
+    }
+
     private renderProject(project: Project) {
         RenderUtils.renderProject(project);
     }
 
     private renderTabsForProject(project: Project) {
         const latestTab = project.tabs[project.tabs.length - 1];
-        RenderUtils.renderTab(latestTab);
+        RenderUtils.renderTab(latestTab, project);
     }
 
-    private renderToDosForTab(tab: Tab) {
+    private renderToDosForTab(tab: Tab, project: Project) {
         const latestToDo = tab.toDos[tab.toDos.length - 1];
-        RenderUtils.renderToDo(latestToDo);
+        RenderUtils.renderToDo(latestToDo, tab, project);
     }
 }

@@ -347,6 +347,11 @@ input[type='checkbox'] {
     visibility: hidden;
 }
 
+.active {
+    font-weight: bold;
+    transition: 0.05s ease-in-out;
+}
+
 .header-priority {
     position: relative;
     left: 14px;
