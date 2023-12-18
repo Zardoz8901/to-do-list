@@ -433,3 +433,9 @@ input[type='checkbox'] {
     max-width: 20px;
     margin: 0;
 }
+
+.header-timestamp,
+.timestamp {
+    min-width: 220px;
+    max-width: 220px;
+}

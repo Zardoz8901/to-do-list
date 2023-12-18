@@ -4,3 +4,5 @@ export default function applyDisappear(query: string, value: number) {
         newToDo.classList.add('disappear');
     }
 }
+
+// broaden class to include apple and remove hide/disappear

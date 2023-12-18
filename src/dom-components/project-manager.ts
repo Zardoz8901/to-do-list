@@ -40,6 +40,51 @@ export default class ProjectManager {
         }
     }
 
+    public setActiveProject(projectId: number) {
+        // Remove active class from all projects and hide all tabs and to-dos
+        this.projects.forEach((project) => {
+            project.isActive = false;
+            this.updateProjectClass(project, false);
+            project.tabs.forEach((tab) => {
+                tab.isDisplayed = false;
+                this.updateTabVisibility(tab, false);
+            });
+        });
+
+        // Find the project and set it as active
+        const project = this.projects.find((p) => p.id === projectId);
+        if (project) {
+            project.isActive = true;
+            this.updateProjectClass(project, true);
+            project.tabs.forEach((tab) => {
+                tab.isDisplayed = true;
+                this.updateTabVisibility(tab, true);
+            });
+        }
+        console.log(project);
+    }
+
+    private updateTabVisibility(tab: Tab, makeVisible: boolean) {
+        const tabElement = document.querySelector(`[id="tab-${tab.id}"]`);
+        if (makeVisible) {
+            tabElement?.classList.add('visually-hidden');
+        } else {
+            tabElement?.classList.remove('visually-hidden');
+        }
+        console.log(tabElement);
+    }
+
+    private updateProjectClass(project: Project, isActive: boolean) {
+        // Select project DOM element using a unique identifier, e.g., 'data-id' attribute
+        const projectElement = document.querySelector(`[id="project-${project.id}"]`);
+        if (projectElement) {
+            projectElement.classList.toggle('active', isActive);
+        } else {
+            // If this logs an error, your DOM element may not exist or the data-id may be incorrect.
+            console.error(`Project DOM element with data-id="project-${project.id}" not found.`);
+        }
+    }
+
     private renderProject(project: Project) {
         RenderUtils.renderProject(project);
     }
