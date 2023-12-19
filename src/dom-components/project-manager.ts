@@ -11,7 +11,6 @@ export default class ProjectManager {
     public addProject(): number {
         const newProject = new Project(this.projectCounter++);
         if (this.projects.length >= 15) {
-            console.log(`Cannot add more than 15 projects`);
             return;
         }
         this.projects.push(newProject);
@@ -78,7 +77,6 @@ export default class ProjectManager {
                 this.updateTabVisibility(tab, true, project.id);
             });
         }
-        console.log(project);
     }
 
     public setActiveTab(projectId: number, tabId: number) {
@@ -131,7 +129,6 @@ export default class ProjectManager {
                 `Tab DOM element with id="project-${projectId}-tab-${tab.id}" not found.`
             );
         }
-        console.log(tabElement);
     }
 
     private updateToDoVisibility(
@@ -154,7 +151,6 @@ export default class ProjectManager {
                 `toDo DOM element with id="project-${projectId}-tab-${tabId}-todo-${toDo.id}" not found.`
             );
         }
-        console.log(toDoElement);
     }
 
     private updateProjectClass(project: Project, isActive: boolean) {

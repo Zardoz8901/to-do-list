@@ -350,6 +350,7 @@ input[type='checkbox'] {
 .active {
     font-weight: bold;
     transition: 0.05s ease-in-out;
+    outline: 2px solid silver;
 }
 
 .header-priority {
@@ -362,6 +363,15 @@ input[type='checkbox'] {
 .spacer {
     display: flex;
     height: 206px;
+    align-items: center;
+}
+
+#spacer-text {
+    margin-top: 1rem;
+    color: #1a1a1a;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 4rem;
+    font-style: italic;
 }
 
 /* Projects */

@@ -6,4 +6,3 @@ export default function applyDisappear(selector: string) {
         console.error(`Element with selector ${selector} not found.`);
     }
 }
-// broaden class to include apple and remove hide/disappear
