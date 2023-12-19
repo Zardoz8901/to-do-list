@@ -6,13 +6,10 @@ import RenderUtils from './render-utils';
 export default class ProjectManager {
     public projects: Project[] = [];
     private projectCounter: number = 1;
-    private toDoCounter: number = 1;
 
-    public addProject(): number {
+    public addProject() {
         const newProject = new Project(this.projectCounter++);
-        if (this.projects.length >= 15) {
-            return;
-        }
+
         this.projects.push(newProject);
         this.renderProject(newProject);
     }
@@ -20,12 +17,6 @@ export default class ProjectManager {
     public addTabToProject(projectId: number): number {
         const project = this.projects.find((p) => p.id === projectId);
         if (!project) return;
-
-        // Check if project already has 10 tabs
-        if (project.tabs.length >= 10) {
-            console.error(`Cannot add more than 10 tabs to project ID: ${projectId}`);
-            return;
-        }
 
         const newTabId = project.tabs.length + 1;
         const newTab = new Tab(newTabId);
@@ -96,8 +87,10 @@ export default class ProjectManager {
             // Then, find and set the specified tab to active/displayed along with its to-dos
             const activeTab = project.tabs.find((t) => t.id === tabId);
             if (activeTab) {
+                this.removeFromActiveTabHistory(projectId, tabId);
                 activeTab.isActive = true;
                 this.updateTabClass(project, activeTab, true);
+                this.activeTabHistory.push({ projectId, tabId }); //new implementation
                 activeTab.toDos.forEach((toDo) => {
                     toDo.isDisplayed = true;
                     this.updateToDoVisibility(toDo, true, tabId, projectId);
@@ -171,6 +164,49 @@ export default class ProjectManager {
         }
     }
 
+    public deleteToDoFromTab(projectId: number, tabId: number, todoId: number) {
+        const project = this.projects.find((p) => p.id === projectId);
+        const tab = project.tabs.find((t) => t.id === tabId);
+        const todoIndex = tab.toDos.findIndex((todo) => todo.id === todoId);
+
+        if (todoIndex > -1) {
+            tab.toDos.splice(todoIndex, 1); // Removes the todo from the tab's todos array
+        }
+    }
+
+    public checkAndDeleteEmptyTab(projectId: number, tabId: number) {
+        const project = this.projects.find((p) => p.id === projectId);
+        const tab = project?.tabs.find((t) => t.id === tabId);
+
+        if (tab && tab.toDos.length === 0) {
+            this.activeTabHistory = this.activeTabHistory.filter(
+                (history) => !(history.projectId === projectId && history.tabId === tabId)
+            );
+            // Remove the tab from the project's tabs array
+            const tabIndex = project.tabs.findIndex((t) => t.id === tabId);
+            if (tabIndex > -1) {
+                project.tabs.splice(tabIndex, 1);
+            }
+
+            // Remove the tab from the DOM
+            this.removeTabFromDom(projectId, tabId);
+            if (project?.tabs.length === 0) {
+                this.fallbackToLastActiveTab();
+            } else {
+                // If there are still tabs in the current project, set the last tab as active
+                const lastTabId = project.tabs[project.tabs.length - 1].id;
+                this.setActiveTab(projectId, lastTabId);
+            }
+        }
+    }
+
+    private removeTabFromDom(projectId: number, tabId: number) {
+        const tabElement = document.querySelector(`#project-${projectId}-tab-${tabId}`);
+        if (tabElement && tabElement.parentNode) {
+            tabElement.parentNode.removeChild(tabElement);
+        }
+    }
+
     private renderProject(project: Project) {
         RenderUtils.renderProject(project);
     }
@@ -184,4 +220,24 @@ export default class ProjectManager {
         const latestToDo = tab.toDos[tab.toDos.length - 1];
         RenderUtils.renderToDo(latestToDo, tab, project);
     }
+
+    private fallbackToLastActiveTab() {
+        // Check if we have any history to fallback to
+        if (this.activeTabHistory.length > 0) {
+            const lastActive = this.activeTabHistory.pop();
+            if (lastActive) {
+                this.setActiveTab(lastActive.projectId, lastActive.tabId);
+            }
+        } else {
+            console.error('No previous active tabs to fallback to.');
+        }
+    }
+
+    private removeFromActiveTabHistory(projectId: number, tabId: number) {
+        this.activeTabHistory = this.activeTabHistory.filter(
+            (history) => !(history.projectId === projectId && history.tabId === tabId)
+        );
+    }
+
+    private activeTabHistory: { projectId: number; tabId: number }[] = [];
 }

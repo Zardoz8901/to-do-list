@@ -367,11 +367,15 @@ input[type='checkbox'] {
 }
 
 #spacer-text {
+    text-align: center;
     margin-top: 1rem;
     color: #1a1a1a;
     font-family: 'Times New Roman', Times, serif;
     font-size: 4rem;
     font-style: italic;
+}
+
+#spacer-clock {
 }
 
 /* Projects */
@@ -451,6 +455,39 @@ input[type='checkbox'] {
 
 .header-timestamp,
 .timestamp {
-    min-width: 220px;
-    max-width: 220px;
+    min-width: 180px;
+    max-width: 180px;
+}
+
+.header-delete,
+.delete-todo {
+    max-width: 20px;
+    min-width: 20px;
+    justify-self: start;
+}
+
+.delete-todo {
+    margin-top: 8px;
+    background-image: url(/node_modules/@tabler/icons/icons/bomb-filled.svg);
+    background-repeat: no-repeat;
+}
+
+@keyframes pulse {
+    0%,
+    100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+}
+
+.delete-todo {
+    color: black; /* Default color is black */
+    transition: color 0.3s ease; /* Transition for the color change */
+}
+
+.delete-todo:hover {
+    animation: pulse 1s infinite; /* Apply the pulse animation on hover */
+    stroke: red;
 }

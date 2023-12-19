@@ -73,6 +73,7 @@ export default class RenderUtils {
                         </div>
                 </div>
                 <div class="timestamp to-do-cell" id="timestamp-project-${project.id}-tab-${tab.id}-todo-${todo.id}"></div>
+                <div class="delete-todo to-do-cell" id="delete-project-${project.id}-tab-${tab.id}-todo-${todo.id}"></div>
             </div>
     `;
             container.insertAdjacentHTML('beforeend', toDoHTML);
