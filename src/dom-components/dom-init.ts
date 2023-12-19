@@ -33,8 +33,6 @@ export default function initDom() {
         // Retrieve the active project from the DOM
         const activeProjectElement = document.querySelector('.project.active');
 
-        // Use the active project to determine where to add the new tab
-        // Use the active project to determine where to add the new tab
         if (activeProjectElement) {
             const projectIdMatch = activeProjectElement.id.match(/^project-(\d+)$/);
 
@@ -42,14 +40,11 @@ export default function initDom() {
                 const projectId = parseInt(projectIdMatch[1], 10);
 
                 if (!isNaN(projectId)) {
-                    // Add a new tab to the active project.
-                    // Add a new tab to the active project
-                    projectManager.addTabToProject(projectId);
-
-                    // Retrieve the updated project with the new tab added
                     const project = projectManager.projects.find((p) => p.id === projectId);
-                    if (project) {
-                        // We assume the last tab in the array is the one just added
+                    // Check if project already has 10 tabs before adding a new one
+                    if (project && project.tabs.length < 10) {
+                        // Add a new tab to the active project
+                        projectManager.addTabToProject(projectId);
                         const newTabId = project.tabs[project.tabs.length - 1].id;
 
                         // Add a to-do to the newly created tab
@@ -58,8 +53,7 @@ export default function initDom() {
                         // Set the new tab as active
                         projectManager.setActiveTab(projectId, newTabId);
 
-                        // Now reflect this change on the DOM. Remove 'active' class from old active tab,
-                        // and add it to the new active tab
+                        // Update the DOM to reflect the new active tab
                         const oldActiveTabElement = document.querySelector('.tab.active');
                         if (oldActiveTabElement) oldActiveTabElement.classList.remove('active');
 
@@ -67,6 +61,8 @@ export default function initDom() {
                             `#project-${projectId}-tab-${newTabId}`
                         );
                         if (newActiveTabElement) newActiveTabElement.classList.add('active');
+                    } else {
+                        console.error(`Cannot add more than 10 tabs to project ID: ${projectId}`);
                     }
                 } else {
                     console.error('Failed to parse project ID.');
@@ -154,10 +150,14 @@ export default function initDom() {
         const lastProject = projectManager.projects[projectManager.projects.length - 1];
         const newProjectId = lastProject.id + 1;
 
+        if (projectManager.projects.length >= 15) {
+            console.error('Cannot add more than 15 projects');
+            return;
+        }
         // Add the new project
         projectManager.addProject();
 
-        // After creating the new project, mark it as active
+        // After creating the new project, mark it as activef
         projectManager.setActiveProject(newProjectId);
 
         // After setting the new project as active, create and set the first tab as active

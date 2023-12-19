@@ -8,7 +8,7 @@ export default class ProjectManager {
     private projectCounter: number = 1;
     private toDoCounter: number = 1;
 
-    public addProject() {
+    public addProject(): number {
         const newProject = new Project(this.projectCounter++);
         if (this.projects.length >= 15) {
             console.log(`Cannot add more than 15 projects`);
@@ -18,7 +18,7 @@ export default class ProjectManager {
         this.renderProject(newProject);
     }
 
-    public addTabToProject(projectId: number) {
+    public addTabToProject(projectId: number): number {
         const project = this.projects.find((p) => p.id === projectId);
         if (!project) return;
 
@@ -32,6 +32,7 @@ export default class ProjectManager {
         const newTab = new Tab(newTabId);
         project.tabs.push(newTab);
         this.renderTabsForProject(project);
+        return newTabId;
     }
 
     public addToDoToTab(projectId: number, tabId: number) {
