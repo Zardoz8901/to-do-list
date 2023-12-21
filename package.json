@@ -4,6 +4,8 @@
     "description": "",
     "main": "index.js",
     "scripts": {
+        "predeploy": "webpack --mode production",
+        "deploy": "gh-pages -d dist",
         "test": "echo \"Error: no test specified\" && exit 1",
         "serve": "npm run watch && npm run start",
         "start": "webpack serve --open-app-name Google Chrome",
@@ -27,6 +29,7 @@
         "eslint-config-airbnb-base": "^15.0.0",
         "eslint-config-airbnb-typescript": "^17.1.0",
         "eslint-config-prettier": "^9.0.0",
+        "gh-pages": "^6.1.0",
         "html-webpack-plugin": "^5.5.3",
         "prettier": "^3.0.3",
         "style-loader": "^3.3.3",

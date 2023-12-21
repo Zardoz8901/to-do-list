@@ -375,9 +375,6 @@ input[type='checkbox'] {
     font-style: italic;
 }
 
-#spacer-clock {
-}
-
 /* Projects */
 #navbar {
     flex-direction: column;
